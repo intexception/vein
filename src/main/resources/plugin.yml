@@ -1,0 +1,11 @@
+name: Veinpvp
+version: '${project.version}'
+main: best.nquantum.veinpvp.Vein
+authors: [ nquantum ]
+description: Vein PvP Plugin - for Vein Network
+website: https://vein.nquantum.best
+commands:
+  kits:
+    usage: /<command>
+    description: View kits.
+    permission: vein.kits
