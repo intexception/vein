@@ -13,12 +13,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-public final class BasicKit extends Kit implements Listener {
-    public BasicKit() {
-        super("Basic", ChatColor.RESET + "" + ChatColor.GRAY +  "A basic kit, containing iron armor, diamond sword and a golden apple", null);
+public final class FisherKit extends Kit implements Listener {
+    public FisherKit() {
+        super("Fisherman", ChatColor.RESET + "" + ChatColor.GRAY + "A kit with iron sword, iron armor, fishing rod and a golden apple", null);
         List<String> lore = new ArrayList<>();
         lore.add(getDescription());
-        ItemStack guiItem = new ItemStack(Material.DIAMOND_SWORD);
+        ItemStack guiItem = new ItemStack(Material.FISHING_ROD);
         ItemMeta itemMeta = guiItem.getItemMeta();
         itemMeta.setLore(lore);
         itemMeta.setDisplayName(getName());
@@ -35,10 +35,11 @@ public final class BasicKit extends Kit implements Listener {
         ItemStack chest = new ItemStack(Material.IRON_CHESTPLATE, 1);
         ItemStack legs = new ItemStack(Material.IRON_LEGGINGS, 1);
         ItemStack boots = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemStack sword = new ItemStack(Material.IRON_SWORD, 1);
+        ItemStack rod = new ItemStack(Material.FISHING_ROD, 1);
         ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 1);
 
-        this.getItems().addAll(Arrays.asList(sword, gapple));
+        this.getItems().addAll(Arrays.asList(sword, rod, gapple));
         this.getArmor().addAll(Arrays.asList(helmet, chest, legs, boots));
 
         getItems().forEach(item -> System.out.println(item));

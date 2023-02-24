@@ -11,8 +11,8 @@ import java.util.List;
 public abstract class Kit implements Listener {
     private String name;
     private String description;
-    private List<ItemStack> items;
-    private List<ItemStack> armor;
+    private List<ItemStack> items = new ArrayList<>();
+    private List<ItemStack> armor = new ArrayList<>();
     private ItemStack guiItem;
 
     public Kit(String name, String description, ItemStack guiItem) {

@@ -1,8 +1,12 @@
 package best.nquantum.veinpvp;
 
 import best.nquantum.veinpvp.handlers.FallDamageRemover;
+import best.nquantum.veinpvp.handlers.HungerRemover;
+import best.nquantum.veinpvp.handlers.MobSpawningRemover;
 import best.nquantum.veinpvp.kit.Kit;
 import best.nquantum.veinpvp.kit.KitManager;
+import best.nquantum.veinpvp.kit.impl.BasicKit;
+import best.nquantum.veinpvp.kit.impl.FisherKit;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.plugin.java.*;
 import org.bukkit.event.*;
@@ -24,14 +28,31 @@ public final class Vein extends JavaPlugin implements Listener {
     @Override
     public void onEnable() {
         kitManager = new KitManager();
+
         getServer().getPluginManager().registerEvents(this, this);
+
+        /*
+        Handlers
+         */
+
         getServer().getPluginManager().registerEvents(new FallDamageRemover(), this);
+        getServer().getPluginManager().registerEvents(new HungerRemover(), this);
+        getServer().getPluginManager().registerEvents(new MobSpawningRemover(), this);
+
+        /*
+        Kits
+         */
+
+        getServer().getPluginManager().registerEvents(new BasicKit(), this);
+        getServer().getPluginManager().registerEvents(new FisherKit(), this);
+
 
         kitSelector = getServer().createInventory(null, 9, "Select your kit");
 
         int index = 0;
         for (Kit kit : kitManager.getKits()) {
-            kitSelector.setItem(0, kit.getGuiItem());
+            kitSelector.setItem(index, kit.getGuiItem());
+            ++index;
         }
 
     }
@@ -57,13 +78,16 @@ public final class Vein extends JavaPlugin implements Listener {
             Player player = (Player) event.getWhoClicked();
             ItemStack clickedItem = event.getCurrentItem();
 
-            for (Kit kit : kitManager.getKits()) {
-                System.out.println(clickedItem);
-                System.out.println(kit.getGuiItem());
-                if (clickedItem == kit.getGuiItem()) {
-                    System.out.println("clicked");
-                    kit.equip(player);
+            switch (event.getSlot()) {
+                case 0: {
+                    kitManager.getKitByName("Basic").equip(player);
+                    break;
                 }
+                case 1: {
+                    kitManager.getKitByName("Fisherman").equip(player);
+                    break;
+                }
+
             }
 
             player.closeInventory();
