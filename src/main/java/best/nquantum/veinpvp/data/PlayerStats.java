@@ -2,10 +2,26 @@ package best.nquantum.veinpvp.data;
 
 public class PlayerStats {
     private int level;
+    private int xp;
     private int kills;
     private int deaths;
     private double kdRatio;
     private int killStreak;
+
+
+    public int getXp() {
+        return xp;
+    }
+
+    public PlayerStats setXp(int xp) {
+        this.xp = xp;
+        return this;
+    }
+
+    public PlayerStats giveXp(int amount) {
+        this.xp += amount;
+        return this;
+    }
 
     public int getLevel() {
         return level;

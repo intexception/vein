@@ -11,14 +11,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class PlayerHandler {
-    private static final Map<String, PlayerStats> playerStats = new HashMap<>();
+    public static final Map<String, PlayerStats> playerStats = new HashMap<>();
 
     public static PlayerStats getPlayerStats(final Player p) {
-        if(playerStats.containsKey(p.getName())) {
-            PlayerStats stats = new PlayerStats();
-            playerStats.put(p.getName(), stats);
-            return stats;
-        }
         return playerStats.get(p.getName());
     }
 

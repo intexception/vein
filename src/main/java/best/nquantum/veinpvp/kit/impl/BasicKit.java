@@ -4,6 +4,7 @@ import best.nquantum.veinpvp.kit.Kit;
 import best.nquantum.veinpvp.util.ChatUtil;
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
+import org.bukkit.enchantments.Enchantment;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.ItemStack;
@@ -31,11 +32,32 @@ public final class BasicKit extends Kit implements Listener {
         player.getInventory().clear();
         getItems().clear();
         getArmor().clear();
+
         ItemStack helmet = new ItemStack(Material.IRON_HELMET, 1);
-        ItemStack chest = new ItemStack(Material.IRON_CHESTPLATE, 1);
+        ItemMeta helmetMeta = helmet.getItemMeta();
+        helmetMeta.spigot().setUnbreakable(true);
+        helmet.setItemMeta(helmetMeta);
+
+        ItemStack chest = new ItemStack(Material.DIAMOND_CHESTPLATE, 1);
+        ItemMeta chestMeta = chest.getItemMeta();
+        chestMeta.addEnchant(Enchantment.PROTECTION_ENVIRONMENTAL, 2, true);
+        chestMeta.spigot().setUnbreakable(true);
+        chest.setItemMeta(chestMeta);
+
         ItemStack legs = new ItemStack(Material.IRON_LEGGINGS, 1);
+        ItemMeta legsMeta = legs.getItemMeta();
+        legsMeta.spigot().setUnbreakable(true);
+        legs.setItemMeta(legsMeta);
+
         ItemStack boots = new ItemStack(Material.IRON_BOOTS, 1);
-        ItemStack sword = new ItemStack(Material.DIAMOND_SWORD, 1);
+        ItemMeta bootsMeta = boots.getItemMeta();
+        bootsMeta.spigot().setUnbreakable(true);
+        boots.setItemMeta(bootsMeta);
+
+        ItemStack sword = new ItemStack(Material.IRON_SWORD, 1);
+        ItemMeta swordMeta = sword.getItemMeta();
+        swordMeta.spigot().setUnbreakable(true);
+        sword.setItemMeta(swordMeta);
         ItemStack gapple = new ItemStack(Material.GOLDEN_APPLE, 1);
 
         this.getItems().addAll(Arrays.asList(sword, gapple));
