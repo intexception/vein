@@ -1,4 +1,4 @@
-name: Veinpvp
+name: VeinPVP
 version: '${project.version}'
 main: best.nquantum.veinpvp.Vein
 authors: [ nquantum ]
